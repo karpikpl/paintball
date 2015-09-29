@@ -4,17 +4,19 @@ using NUnit.Framework;
 
 namespace KattisSolution.Tests
 {
-    [Ignore]
     [TestFixture]
     [Category("sample")]
     public class CustomTest
     {
         [Test]
-        public void SampleTest_WithStringData_Should_Pass()
+        public void SampleTest_WithStringData_Should_Pass1()
         {
             // Arrange
-            const string expectedAnswer = "50\n";
-            using (var input = new MemoryStream(Encoding.UTF8.GetBytes("10\n")))
+            const string expectedAnswer = "3\n2\n1\n";
+            using (var input = new MemoryStream(Encoding.UTF8.GetBytes(@"3 3
+1 2
+2 3
+1 3")))
             using (var output = new MemoryStream())
             {
                 // Act
@@ -22,7 +24,26 @@ namespace KattisSolution.Tests
                 var result = Encoding.UTF8.GetString(output.ToArray());
 
                 // Assert
-                Assert.That(result, Is.EqualTo(expectedAnswer));
+                CollectionAssert.AreEquivalent(expectedAnswer.Split('\n'),result.Split('\n'));
+            }
+        }
+
+        [Test]
+        public void SampleTest_WithStringData_Should_Pass2()
+        {
+            // Arrange
+            const string expectedAnswer = "Impossible\n";
+            using (var input = new MemoryStream(Encoding.UTF8.GetBytes(@"3 2
+1 2
+1 3")))
+            using (var output = new MemoryStream())
+            {
+                // Act
+                Program.Solve(input, output);
+                var result = Encoding.UTF8.GetString(output.ToArray());
+
+                // Assert
+                CollectionAssert.AreEquivalent(expectedAnswer.Split('\n'), result.Split('\n'));
             }
         }
     }
