@@ -1,0 +1,1 @@
+python kattisSubmit.py -ppaintball KattisSolution\Program.cs KattisSolution\InputOutput.cs -f
