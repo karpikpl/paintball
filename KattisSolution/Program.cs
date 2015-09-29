@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using KattisSolution.IO;
-using NUnit.Core;
 
 namespace KattisSolution
 {
@@ -113,13 +112,6 @@ namespace KattisSolution
             }
 
             return shotsFired;
-        }
-
-
-        class Bullet
-        {
-            public int Target { get; set; }
-            public bool IsFired { get; set; }
         }
     }
 }
